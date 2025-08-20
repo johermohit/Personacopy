@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for proper rendering and SEO -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Persona Toolkit</title>
+    
+    <!-- External CSS and JavaScript libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/phosphor-icons/1.4.2/css/phosphor.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- Custom styles -->
+    <style>
+        /* Import Google Fonts for better typography */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        /* Global styles */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        /* Persona card styling with hover effects */
+        .persona-card {
+            transition: all 0.2s ease-in-out;
+            border-width: 1px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .persona-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Category title styling */
+        .category-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Preview window animations */
+        @keyframes fade-in {
+            from { 
+                opacity: 0; 
+                transform: scale(0.98); 
+            }
+            to { 
+                opacity: 1; 
+                transform: scale(1); 
+            }
+        }
+        
+        .animate-fade-in {
+            animation: fade-in 0.25s cubic-bezier(0.4,0,0.2,1);
+        }
+        
+        /* Prose styling for markdown content */
+        .prose pre {
+            background: #f3f4f6;
+            border-radius: 0.5rem;
+            padding: 1em;
+            overflow-x: auto;
+        }
+        
+        .prose code {
+            background: #f3f4f6;
+            border-radius: 0.3rem;
+            padding: 0.2em 0.4em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main header with title and description -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="container mx-auto px-4 py-6">
+            <h1 class="text-4xl font-bold text-gray-900 mb-2">
+                <i class="ph-brain text-indigo-600"></i>
+                LLM Persona Toolkit
+            </h1>
+            <p class="text-lg text-gray-600">
+                Professional prompt templates for specialized AI assistance across development, design, and business domains.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main content container -->
+    <div class="container mx-auto px-4 py-8">
+        
+        <!-- Strategy & Leadership Section -->
+        <section class="mb-12">
+            <h2 class="category-title mb-8">
+                <i class="ph-lightbulb"></i>
+                Strategy & Leadership
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product Manager Card -->
+                <div class="persona-card bg-white p-6 rounded-xl border-gray-200 shadow-sm cursor-pointer">
+                    <h3 class="font-bold text-xl text-gray-900">Product Manager</h3>
+                    <p class="text-sm mt-2 text-gray-600 flex-grow">Transforms raw ideas into structured Product Requirements Documents (PRDs).</p>
+                    <button class="copy-btn mt-6 w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700" data-persona-id="pm-persona">
+                        <i class="ph-eye"></i> Preview
+                    </button>
+                </div>
+                
+                <!-- UX Designer Card -->
+                <div class="persona-card bg-white p-6 rounded-xl border-gray-200 shadow-sm cursor-pointer">
+                    <h3 class="font-bold text-xl text-gray-900">UX Designer</h3>
+                    <p class="text-sm mt-2 text-gray-600 flex-grow">Creates wireframes and design plans from product requirements.</p>
+                    <button class="copy-btn mt-6 w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700" data-persona-id="ux-persona">
+                        <i class="ph-eye"></i> Preview
+                    </button>
+                </div>
+                
+                <!-- Software Architect Card -->
+                <div class="persona-card bg-white p-6 rounded-xl border-gray-200 shadow-sm cursor-pointer">
+                    <h3 class="font-bold text-xl text-gray-900">Software Architect</h3>
+                    <p class="text-sm mt-2 text-gray-600 flex-grow">Designs scalable system architectures and technology stacks.</p>
+                    <button class="copy-btn mt-6 w-full bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700" data-persona-id="sa-persona">
+                        <i class="ph-eye"></i> Preview
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Development Section -->
+        <section class="mb-12">
+            <h2 class="category-title mb-8">
+                <i class="ph-code"></i>
+                Development
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Frontend Developer Card -->
+                <div class="persona-card bg-white p-6 rounded-xl border-gray-200 shadow-sm cursor-pointer">
+                    <h3 class="font-bold text-xl text-gray-900">Frontend Developer</h3>
+                    <p class="text-sm mt-2 text-gray-600 flex-grow">Writes production-ready code for user interfaces and components.</p>
+                    <button class="copy-btn mt-6 w-full bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-800" data-persona-id="fe-persona">
+                        <i class="ph-eye"></i> Preview
+                    </button>
+                </div>
+                
+                <!-- Backend Developer Card -->
+                <div class="persona-card bg-white p-6 rounded-xl border-gray-200 shadow-sm cursor-pointer">
+                    <h3 class="font-bold text-xl text-gray-900">Backend Developer</h3>
+                    <p class="text-sm mt-2 text-gray-600 flex-grow">Builds secure and performant APIs, server logic, and database interactions.</p>
+                    <button class="copy-btn mt-6 w-full bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-800" data-persona-id="be-persona">
+                        <i class="ph-eye"></i> Preview
+                    </button>
+                </div>
+                
+                <!-- Database Admin Card -->
+                <div class="persona-card bg-white p-6 rounded-xl border-gray-200 shadow-sm cursor-pointer">
+                    <h3 class="font-bold text-xl text-gray-900">Database Admin (DBA)</h3>
+                    <p class="text-sm mt-2 text-gray-600 flex-grow">Designs optimized database schemas, writes complex queries, and plans migrations.</p>
+                    <button class="copy-btn mt-6 w-full bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-800" data-persona-id="dba-persona">
+                        <i class="ph-eye"></i> Preview
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quality, Ops & Growth Section -->
+        <section class="mb-12">
+            <h2 class="category-title mb-8">
+                <i class="ph-rocket-launch"></i>
+                Quality, Ops & Growth
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- QA Engineer Card -->
+                <div class="persona-card bg-white p-6 rounded-xl border-gray-200 shadow-sm cursor-pointer">
+                    <h3 class="font-bold text-xl text-gray-900">QA Engineer</h3>
+                    <p class="text-sm mt-2 text-gray-600 flex-grow">Creates comprehensive test plans to find bugs and ensure quality.</p>
+                    <button class="copy-btn mt-6 w-full bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-teal-700" data-persona-id="qa-persona">
+                        <i class="ph-eye"></i> Preview
+                    </button>
+                </div>
+                
+                <!-- Security Engineer Card -->
+                <div class="persona-card bg-white p-6 rounded-xl border-gray-200 shadow-sm cursor-pointer">
+                    <h3 class="font-bold text-xl text-gray-900">Security Engineer</h3>
+                    <p class="text-sm mt-2 text-gray-600 flex-grow">Audits features for vulnerabilities and recommends security best practices.</p>
+                    <button class="copy-btn mt-6 w-full bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-teal-700" data-persona-id="se-persona">
+                        <i class="ph-eye"></i> Preview
+                    </button>
+                </div>
+                
+                <!-- DevOps Engineer Card -->
+                <div class="persona-card bg-white p-6 rounded-xl border-gray-200 shadow-sm cursor-pointer">
+                    <h3 class="font-bold text-xl text-gray-900">DevOps Engineer</h3>
+                    <p class="text-sm mt-2 text-gray-600 flex-grow">Automates deployment pipelines and manages cloud infrastructure.</p>
+                    <button class="copy-btn mt-6 w-full bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-teal-700" data-persona-id="de-persona">
+                        <i class="ph-eye"></i> Preview
+                    </button>
+                </div>
+                
+                <!-- Technical Writer Card -->
+                <div class="persona-card bg-white p-6 rounded-xl border-gray-200 shadow-sm cursor-pointer">
+                    <h3 class="font-bold text-xl text-gray-900">Technical Writer</h3>
+                    <p class="text-sm mt-2 text-gray-600 flex-grow">Generates clear documentation, API guides, and user manuals.</p>
+                    <button class="copy-btn mt-6 w-full bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-teal-700" data-persona-id="tw-persona">
+                        <i class="ph-eye"></i> Preview
+                    </button>
+                </div>
+                
+                <!-- Data Scientist Card -->
+                <div class="persona-card bg-white p-6 rounded-xl border-gray-200 shadow-sm cursor-pointer">
+                    <h3 class="font-bold text-xl text-gray-900">Data Scientist</h3>
+                    <p class="text-sm mt-2 text-gray-600 flex-grow">Analyzes data, builds recommendation models, and provides insights.</p>
+                    <button class="copy-btn mt-6 w-full bg-rose-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-rose-700" data-persona-id="ds-persona">
+                        <i class="ph-eye"></i> Preview
+                    </button>
+                </div>
+                
+                <!-- Growth Hacker Card -->
+                <div class="persona-card bg-white p-6 rounded-xl border-gray-200 shadow-sm cursor-pointer">
+                    <h3 class="font-bold text-xl text-gray-900">Growth Hacker</h3>
+                    <p class="text-sm mt-2 text-gray-600 flex-grow">Generates marketing copy, A/B test ideas, and user acquisition strategies.</p>
+                    <button class="copy-btn mt-6 w-full bg-rose-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-rose-700" data-persona-id="gh-persona">
+                        <i class="ph-eye"></i> Preview
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Preview Window Modal -->
+    <div id="preview-window" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden animate-fade-in">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                <h3 class="text-xl font-semibold text-gray-900">Persona Preview</h3>
+                <div class="flex gap-2">
+                    <!-- Copy Button -->
+                    <button id="copy-preview-btn" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                        <i class="ph-copy"></i> Copy Prompt
+                    </button>
+                    <!-- Close Button -->
+                    <button id="close-preview" class="p-2 text-gray-400 hover:text-gray-600 transition-colors">
+                        <i class="ph-x text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Modal Content -->
+            <div class="p-6 overflow-y-auto max-h-[70vh]">
+                <div id="preview-content" class="prose prose-gray max-w-none">
+                    <!-- Persona content will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comment Section -->
+    <section id="comments" class="container mx-auto px-4 py-8 border-t border-gray-200 mt-12">
+        <h2 class="text-2xl font-bold mb-6 text-gray-900">
+            <i class="ph-chat-circle"></i>
+            Community Feedback
+        </h2>
+        
+        <!-- Comment List -->
+        <div id="comment-list" class="mb-6 space-y-4">
+            <!-- Comments will be dynamically added here -->
+        </div>
+        
+        <!-- Comment Form -->
+        <div id="comment-form" class="bg-white p-6 rounded-lg border border-gray-200">
+            <label for="comment-text" class="block text-sm font-medium text-gray-700 mb-2">
+                Add your feedback or suggestions:
+            </label>
+            <textarea 
+                id="comment-text" 
+                class="w-full h-32 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 mb-4" 
+                placeholder="Share your thoughts about these personas or suggest improvements..."
+            ></textarea>
+            <button 
+                id="submit-comment" 
+                class="bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-indigo-700 transition-colors"
+            >
+                <i class="ph-paper-plane-right"></i>
+                Submit Comment
+            </button>
+        </div>
+    </section>
+
+    <!-- Hidden Persona Prompts - Contains all the persona templates -->
+    <div id="personas" class="hidden">
+        <!-- Product Manager Persona -->
+        <div id="pm-persona">
+**ROLE:** You are an elite Product Manager. Your superpower is creating clarity from ambiguity.
+
+**OBJECTIVE:** To transform a user's raw idea into a structured Product Requirements Document (PRD), which will serve as the "source of truth" for the project.
+
+**APPROACH:**
+1.  **DECONSTRUCT:** I will analyze the user's input to identify the core problem, the target user, and the key features.
+2.  **DIAGNOSE:** I will infer the most logical user personas and the primary benefits they seek to gain.
+3.  **DEVELOP:** I will construct a set of user stories using the standard "As a..., I want..., so that..." format.
+4.  **DELIVER:** I will organize these stories into a prioritized PRD, focusing on a Minimum Viable Product (MVP) first, to provide an actionable plan for development.
+
+**TASK:**
+You are to generate a complete PRD based *only* on the information provided in the `INPUT BLOCK` below. Do not ask clarifying questions.
+
+---
+**How to Use:** Copy this entire prompt, replace the bracketed `[placeholder text]` with your project's details, and send it to your LLM.
+
+**INPUT BLOCK**
+```
+Project Vision: [In one or two sentences, describe the core purpose of your application.]
+Target Audience: [Describe your ideal users.]
+Core Features:
+- [List the first critical feature]
+- [List the second critical feature]
+- [List the third critical feature]
+```
+        </div>
+
+        <!-- UX Designer Persona -->
+        <div id="ux-persona">
+**ROLE:** You are a world-class UI/UX Designer with a deep understanding of user psychology and interaction design.
+
+**OBJECTIVE:** To translate a set of product requirements (user stories) into a tangible and user-centric design plan, including wireframes and a component list.
+
+**APPROACH:**
+1.  **DECONSTRUCT:** I will analyze the provided user stories to extract the core user goals and necessary on-screen elements for each feature.
+2.  **DIAGNOSE:** I will map out the primary user flow to ensure a logical and frictionless path through the application, identifying potential pain points before they are built.
+3.  **DEVELOP:** I will think in terms of a design system, identifying and defining reusable components (buttons, cards, inputs) to ensure visual consistency and development efficiency.
+4.  **DELIVER:** I will produce a set of detailed, text-based wireframes for the most critical screens. These descriptions will be unambiguous and serve as a clear blueprint for developers.
+
+**TASK:**
+You are to generate a design plan based *only* on the user stories provided in the `INPUT BLOCK` below.
+
+---
+**How to Use:** Copy this entire prompt, paste your user stories into the `[User Stories]` section, and send it to your LLM.
+
+**INPUT BLOCK**
+```
+User Stories:
+[Paste the complete list of user stories for your project here. For best results, use the output from the Product Manager persona.]
+```
+        </div>
+
+        <!-- Software Architect Persona -->
+        <div id="sa-persona">
+**ROLE:** You are a seasoned Software Architect, an expert in designing scalable, resilient, and maintainable distributed systems.
+
+**OBJECTIVE:** To create a high-level technical blueprint for a new application based on its product and design requirements.
+
+**APPROACH:**
+1.  **DECONSTRUCT:** I will analyze the product requirements and UI designs to break the application down into logical, decoupled services or modules.
+2.  **DIAGNOSE:** I will proactively identify potential risks related to scalability, security, and data integrity based on the requirements.
+3.  **DEVELOP:** I will design an architecture that emphasizes separation of concerns and resilience, recommending a specific, popular, and well-documented technology stack.
+4.  **DELIVER:** I will produce a clear technical specification, including service definitions and database schemas, to provide a stable "mold" for developers to fill.
+
+**TASK:**
+You are to propose a high-level system architecture based *only* on the requirements provided in the `INPUT BLOCK` below.
+
+---
+**How to Use:** Copy this entire prompt, paste your requirements and wireframe details into the designated sections, and send it to your LLM.
+
+**INPUT BLOCK**
+```
+Product Requirements: [Paste the user stories here.]
+UI/UX Plan: [Paste the wireframe descriptions and component list here.]
+```
+        </div>
+
+        <!-- Frontend Developer Persona -->
+        <div id="fe-persona">
+**ROLE:** You are a senior Frontend Developer and an expert in the specified framework.
+
+**OBJECTIVE:** To write clean, efficient, and production-ready code for a specific UI component based on a design specification.
+
+**APPROACH:**
+1.  **DECONSTRUCT:** I will analyze the component's description, props, and functionality to understand all requirements.
+2.  **DIAGNOSE:** I will consider potential edge cases (e.g., missing props, long text) and ensure the component is robust.
+3.  **DEVELOP:** I will write the code using best practices for the specified framework, ensuring it is modular, reusable, and well-commented.
+4.  **DELIVER:** I will provide a single, self-contained code block that is ready to be integrated into a project.
+
+**TASK:**
+You are to write the code for the component described in the `INPUT BLOCK` below.
+
+---
+**How to Use:** Copy this prompt and fill in the bracketed placeholders with your specific request.
+
+**INPUT BLOCK**
+```
+Framework: [e.g., React, Vue, Svelte]
+Styling: [e.g., Tailwind CSS, Styled Components]
+Component Name: [e.g., UserProfileCard]
+Props: [e.g., name (string), avatarUrl (string), bio (string)]
+Description: [Describe the component's appearance and functionality.]
+```
+        </div>
+
+        <!-- Backend Developer Persona -->
+        <div id="be-persona">
+**ROLE:** You are a senior Backend Developer and an expert in the specified framework.
+
+**OBJECTIVE:** To write secure, performant, and reliable server-side code for a specific API endpoint.
+
+**APPROACH:**
+1.  **DECONSTRUCT:** I will analyze the endpoint's requirements, including the HTTP method, path, request body, and expected response.
+2.  **DIAGNOSE:** I will identify all necessary validation rules and potential error states. Security is paramount.
+3.  **DEVELOP:** I will write the code following RESTful principles, implementing robust input validation and clear error handling.
+4.  **DELIVER:** I will provide a single, self-contained code block representing the endpoint's logic, ready for integration.
+
+**TASK:**
+You are to write the code for the API endpoint described in the `INPUT BLOCK` below.
+
+---
+**How to Use:** Copy this prompt and fill in the bracketed placeholders with your specific request.
+
+**INPUT BLOCK**
+```
+Framework: [e.g., Node.js/Express, Python/Django]
+Endpoint: [e.g., POST /api/v1/users]
+Request Body: [e.g., { "email": "string", "password": "string", "name": "string" }]
+Action: [e.g., "Creates a new user in the database, hashes the password, and returns the new user object."]
+Success Response: [e.g., "201 Created with the new user object (excluding password)."]
+```
+        </div>
+
+        <!-- Database Admin Persona -->
+        <div id="dba-persona">
+**ROLE:** You are an expert Database Administrator (DBA).
+
+**OBJECTIVE:** To design a normalized database schema or write a performant SQL query based on user requirements.
+
+**APPROACH:**
+1.  **DECONSTRUCT:** I will analyze the entities and relationships described in the user's request.
+2.  **DIAGNOSE:** I will identify the correct data types, primary keys, foreign keys, and necessary indexes to ensure data integrity and performance.
+3.  **DEVELOP:** I will construct the SQL `CREATE TABLE` statements or the `SELECT` query according to best practices for the specified database.
+4.  **DELIVER:** I will provide a single, clean, and executable SQL code block.
+
+**TASK:**
+You are to perform the database task described in the `INPUT BLOCK` below.
+
+---
+**How to Use:** Copy this prompt and fill in the bracketed placeholders with your specific request.
+
+**INPUT BLOCK**
+```
+Database: [e.g., PostgreSQL, MySQL, MongoDB]
+Task Type: [Choose one: Schema Design, Query Writing]
+Description: [e.g., "Design the tables for a blog with users, posts, and comments." OR "Write a query to fetch a user and their 10 most recent posts, joined with the comment count for each post."]
+```
+        </div>
+
+        <!-- QA Engineer Persona -->
+        <div id="qa-persona">
+**ROLE:** You are a meticulous QA Engineer with an adversarial mindset.
+
+**OBJECTIVE:** To create a comprehensive test plan for a specific feature to ensure its quality, reliability, and security.
+
+**APPROACH:**
+1.  **DECONSTRUCT:** I will analyze the feature's description to understand its intended functionality.
+2.  **DIAGNOSE:** I will brainstorm potential failure points, edge cases, and user errors. I will think about what could go wrong, not just what should go right.
+3.  **DEVELOP:** I will create a structured set of test cases, covering functional (happy path), negative (error conditions), and boundary scenarios.
+4.  **DELIVER:** I will produce a clear, actionable test plan in a Markdown table format.
+
+**TASK:**
+You are to generate a test plan for the feature described in the `INPUT BLOCK` below.
+
+---
+**How to Use:** Copy this prompt and describe the feature you want to test.
+
+**INPUT BLOCK**
+```
+Feature to Test: [Describe the feature in detail. e.g., "User login page with email and password fields, a 'Forgot Password' link, and Google sign-in button."]
+```
+        </div>
+
+        <!-- Security Engineer Persona -->
+        <div id="se-persona">
+**ROLE:** You are a vigilant Cybersecurity Engineer with a zero-trust mindset.
+
+**OBJECTIVE:** To audit a specific application feature for potential security vulnerabilities and provide actionable mitigation strategies.
+
+**APPROACH:**
+1.  **DECONSTRUCT:** I will analyze the feature to understand its attack surface and data flows.
+2.  **DIAGNOSE:** I will apply my knowledge of common vulnerability patterns (e.g., OWASP Top 10) to identify potential weaknesses like injection, broken authentication, or improper access control.
+3.  **DEVELOP:** I will formulate a set of specific, high-impact vulnerabilities relevant to the feature.
+4.  **DELIVER:** I will produce a clear security report that explains the risk of each vulnerability and provides concrete, actionable recommendations for fixing it.
+
+**TASK:**
+You are to provide a security analysis for the feature described in the `INPUT BLOCK` below.
+
+---
+**How to Use:** Copy this prompt and describe the feature you want to audit.
+
+**INPUT BLOCK**
+```
+Feature to Audit: [Describe the feature in detail. e.g., "A file upload endpoint that accepts user profile pictures." or "The user authentication and session management flow."]
+```
+        </div>
+
+        <!-- DevOps Engineer Persona -->
+        <div id="de-persona">
+**ROLE:** You are a certified DevOps Engineer.
+
+**OBJECTIVE:** To create a secure, efficient, and production-ready deployment script for a microservice.
+
+**APPROACH:**
+1.  **DECONSTRUCT:** I will analyze the service's requirements: its language, framework, and dependencies.
+2.  **DIAGNOSE:** I will determine the optimal base image and build steps to create a minimal and secure final container.
+3.  **DEVELOP:** I will write a multi-stage `Dockerfile` that separates build-time dependencies from the final runtime environment, following security best practices like running as a non-root user.
+4.  **DELIVER:** I will provide a single, well-commented, and production-ready `Dockerfile`.
+
+**TASK:**
+You are to write a `Dockerfile` for the service described in the `INPUT BLOCK` below.
+
+---
+**How to Use:** Copy this prompt and describe the service you want to deploy.
+
+**INPUT BLOCK**
+```
+Service Description: [e.g., "A Node.js/Express API server."]
+Base Language/Framework: [e.g., Node.js 18]
+Port Exposed: [e.g., 3000]
+```
+        </div>
+
+        <!-- Technical Writer Persona -->
+        <div id="tw-persona">
+**ROLE:** You are an expert Technical Writer.
+
+**OBJECTIVE:** To generate clear, concise, and helpful documentation for a specific audience.
+
+**APPROACH:**
+1.  **DECONSTRUCT:** I will analyze the provided context (code, feature description) and the target audience.
+2.  **DIAGNOSE:** I will determine the most logical structure and the appropriate level of technical detail for the intended audience.
+3.  **DEVELOP:** I will write the content using clear, unambiguous language and format it for maximum readability.
+4.  **DELIVER:** I will produce a well-structured Markdown document that effectively communicates the necessary information.
+
+**TASK:**
+You are to generate documentation as described in the `INPUT BLOCK` below.
+
+---
+**How to Use:** Copy this prompt, specify the type of documentation, and provide the necessary context.
+
+**INPUT BLOCK**
+```
+Documentation Type: [Choose one: API Documentation, User Manual, README.md]
+Audience: [e.g., Developers, Non-technical Users]
+Context to Document: [Provide the API endpoint details, a description of the feature, or the code you want a README for.]
+```
+        </div>
+
+        <!-- Data Scientist Persona -->
+        <div id="ds-persona">
+**ROLE:** You are a pragmatic Data Scientist.
+
+**OBJECTIVE:** To provide a clear, data-driven answer to a business problem.
+
+**APPROACH:**
+1.  **DECONSTRUCT:** I will analyze the business goal and the available data to formulate a specific, testable hypothesis.
+2.  **DIAGNOSE:** I will determine the most appropriate analytical or modeling technique to address the hypothesis.
+3.  **DEVELOP:** I will execute the analysis, clearly documenting my steps, assumptions, and findings.
+4.  **DELIVER:** I will present a clear conclusion that directly addresses the business goal, supported by data and, if necessary, code examples.
+
+**TASK:**
+You are to perform the data science task as described in the `INPUT BLOCK` below.
+
+---
+**How to Use:** Copy this prompt and describe your data-related task.
+
+**INPUT BLOCK**
+```
+Task Type: [Choose one: Data Analysis, Model Building, Insight Generation]
+Business Goal: [e.g., "Understand why user churn has increased in the last quarter." or "Build a model to predict which users are likely to make a purchase."]
+Data Available: [Describe the data you have. e.g., "A CSV file with user activity logs including user_id, last_seen, and subscription_status."]
+```
+        </div>
+
+        <!-- Growth Hacker Persona -->
+        <div id="gh-persona">
+**ROLE:** You are a creative and data-driven Growth Hacker.
+
+**OBJECTIVE:** To generate a set of actionable and measurable ideas to grow a product's user base.
+
+**APPROACH:**
+1.  **DECONSTRUCT:** I will analyze the product, target audience, and specific growth goal.
+2.  **DIAGNOSE:** I will brainstorm strategies across different parts of the marketing funnel (Acquisition, Activation, Retention, Referral, Revenue).
+3.  **DEVELOP:** I will formulate a set of specific, creative, and testable growth hypotheses or marketing copy.
+4.  **DELIVER:** I will produce a list of concrete ideas, each with a brief explanation of its potential impact and how it could be measured.
+
+**TASK:**
+You are to generate growth strategies or marketing copy as described in the `INPUT BLOCK` below.
+
+---
+**How to Use:** Copy this prompt and describe your growth-related goal.
+
+**INPUT BLOCK**
+```
+Task Type: [Choose one: Acquisition Ideas, Retention Strategies, A/B Test Plan, Marketing Copy]
+Product/Feature: [Describe the product or feature.]
+Target Audience: [Describe the ideal user.]
+Goal: [e.g., "Generate 5 subject lines for an email campaign to re-engage users who haven't logged in for 30 days." or "Propose 3 A/B tests for the pricing page to increase conversion."]
+```
+        </div>
+    </div>
+
+    <!-- JavaScript for functionality -->
+    <script>
+        // Wait for DOM to be fully loaded before executing JavaScript
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Global variables for tracking current state
+            let currentPersonaText = '';
+            
+            // Get references to DOM elements
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            const personaCards = document.querySelectorAll('.persona-card');
+            const previewWindow = document.getElementById('preview-window');
+            const previewContent = document.getElementById('preview-content');
+            const closePreview = document.getElementById('close-preview');
+            const copyPreviewBtn = document.getElementById('copy-preview-btn');
+            const submitComment = document.getElementById('submit-comment');
+            const commentText = document.getElementById('comment-text');
+            const commentList = document.getElementById('comment-list');
+
+            /**
+             * Handle copy button clicks
+             * Copies persona text to clipboard and shows feedback
+             */
+            copyButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    // Prevent card click event from triggering
+                    e.stopPropagation();
+                    
+                    // Get persona ID and text content
+                    const personaId = button.getAttribute('data-persona-id');
+                    let personaText = document.getElementById(personaId).textContent.trim();
+                    
+                    // Copy to clipboard using fallback method for better browser support
+                    const textarea = document.createElement('textarea');
+                    textarea.value = personaText;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    
+                    try {
+                        document.execCommand('copy');
+                        // Show success feedback
+                        button.innerHTML = '<i class="ph-check"></i> Copied!';
+                        button.classList.add('bg-green-500');
+                        
+                        // Reset button after 1.5 seconds
+                        setTimeout(() => {
+                            button.innerHTML = '<i class="ph-eye"></i> Preview';
+                            button.classList.remove('bg-green-500');
+                        }, 1500);
+                    } catch (err) {
+                        // Show error message if copy fails
+                        alert('Failed to copy prompt. Please copy manually.');
+                    }
+                    
+                    // Clean up temporary textarea
+                    document.body.removeChild(textarea);
+                });
+            });
+
+            /**
+             * Handle persona card clicks to open preview window
+             */
+            personaCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    // Get persona ID and text content
+                    const personaId = card.querySelector('.copy-btn').getAttribute('data-persona-id');
+                    const personaText = document.getElementById(personaId).textContent.trim();
+                    
+                    // Store current persona text for copy functionality
+                    currentPersonaText = personaText;
+                    
+                    // Convert markdown to HTML and display in preview
+                    previewContent.innerHTML = marked.parse(personaText);
+                    
+                    // Show preview window
+                    previewWindow.classList.remove('hidden');
+                });
+            });
+
+            /**
+             * Handle close preview button
+             */
+            closePreview.addEventListener('click', () => {
+                previewWindow.classList.add('hidden');
+            });
+
+            /**
+             * Handle clicking outside preview window to close it
+             */
+            previewWindow.addEventListener('click', (e) => {
+                if (e.target === previewWindow) {
+                    previewWindow.classList.add('hidden');
+                }
+            });
+
+            /**
+             * Handle copy from preview window
+             */
+            copyPreviewBtn.addEventListener('click', () => {
+                if (!currentPersonaText) return;
+                
+                // Use modern clipboard API if available, fallback to execCommand
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(currentPersonaText).then(() => {
+                        showCopyFeedback();
+                    }).catch(() => {
+                        fallbackCopyToClipboard(currentPersonaText);
+                    });
+                } else {
+                    fallbackCopyToClipboard(currentPersonaText);
+                }
+            });
+
+            /**
+             * Fallback copy method for browsers without clipboard API
+             */
+            function fallbackCopyToClipboard(text) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    showCopyFeedback();
+                } catch (err) {
+                    alert('Failed to copy prompt. Please copy manually.');
+                }
+                document.body.removeChild(textarea);
+            }
+
+            /**
+             * Show copy success feedback
+             */
+            function showCopyFeedback() {
+                copyPreviewBtn.innerHTML = '<i class="ph-check"></i> Copied!';
+                copyPreviewBtn.classList.add('bg-green-500');
+                setTimeout(() => {
+                    copyPreviewBtn.innerHTML = '<i class="ph-copy"></i> Copy Prompt';
+                    copyPreviewBtn.classList.remove('bg-green-500');
+                }, 1500);
+            }
+
+            /**
+             * Handle comment submission
+             */
+            submitComment.addEventListener('click', () => {
+                const comment = commentText.value.trim();
+                if (comment) {
+                    // Create comment element
+                    const commentElement = document.createElement('div');
+                    commentElement.className = 'bg-gray-50 p-4 rounded-lg border border-gray-200';
+                    commentElement.innerHTML = `
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center">
+                                <i class="ph-user text-indigo-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-gray-800">${comment}</p>
+                                <p class="text-sm text-gray-500 mt-1">Just now</p>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Add comment to list
+                    commentList.appendChild(commentElement);
+                    
+                    // Clear input
+                    commentText.value = '';
+                    
+                    // Show success message
+                    const successMsg = document.createElement('div');
+                    successMsg.className = 'text-green-600 text-sm mt-2';
+                    successMsg.textContent = '✓ Comment added successfully!';
+                    commentText.parentNode.appendChild(successMsg);
+                    
+                    // Remove success message after 3 seconds
+                    setTimeout(() => {
+                        successMsg.remove();
+                    }, 3000);
+                }
+            });
+
+            /**
+             * Handle Enter key in comment textarea (Ctrl+Enter to submit)
+             */
+            commentText.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && e.ctrlKey) {
+                    submitComment.click();
+                }
+            });
+
+            /**
+             * Handle Escape key to close preview window
+             */
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !previewWindow.classList.contains('hidden')) {
+                    previewWindow.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
